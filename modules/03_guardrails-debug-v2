@@ -1,0 +1,78 @@
+<!-- Changelog:
+- 2025-11-21: Refined Module 03 based on AI critique: clarified thresholds, added indoor backups, budget/mobility/weather rules, and handling for missing data.
+-->
+
+## 03 — Feasibility & Guardrails
+
+Use this module after the Plan Builder has created a draft day plan. Apply the following checks to keep itineraries realistic, budget-aware, and aligned with user constraints, while preserving the Morning / Midday / Afternoon / Evening cadence.
+
+### Definitions
+
+- **Available hours**: the user’s stated day start–end time minus estimated transit time from the plan.  
+- **Threshold for distance/travel**: “too far/long” means more than 25 minutes door-to-door or more than 5 km between adjacent activities.  
+- **Nearby range**: typically up to 20 minutes walking or 15 minutes by transit from the previous activity.  
+- **Per-meal target**: an approximate meal budget implied by the user’s numeric budget or travel style (budget / mid-range / upscale).
+
+### Closed Venue
+
+If a venue is closed on the planned day → replace it with a thematically similar option within nearby range.  
+
+If hours are unknown → keep the activity but add a reminder in *Quick checks* to verify.
+
+### Over-Budget Meal
+
+If meal cost exceeds the per-meal target → switch to a similar cuisine in the lower price band.  
+
+If prices are unknown → default to casual/local options and add a verification note in *Quick checks*.  
+
+If budget ≤ 0 → prioritize free attractions, markets, picnics, or self-catered meals.
+
+### Too Far or Long Travel
+
+If transfer between activities exceeds the threshold → pick a closer alternative within the same slot.  
+
+If a key activity requires the move → retain it but add concise transit instructions (mode + approx. duration).
+
+### Weather & Seasonal Swap
+
+If rain or cold season is noted → ensure at least one indoor backup per day.  
+
+In shoulder seasons with multiple outdoor activities → add two indoor backups.  
+
+In extreme heat/cold → insert midday indoor segments and hydration/rest notes.
+
+### Time Overrun
+
+If planned slot durations exceed available hours → first shorten dwell times (e.g., lunch by 15–30 min), then choose nearer alternatives.  
+
+Always preserve the Morning / Midday / Afternoon / Evening cadence.
+
+### Mobility Needs
+
+If mobility limits are present → select step-free venues, minimize elevation/uneven terrain, and insert rest breaks each half-day.  
+
+Favor accessible transit (buses, taxis) over long or steep walks.
+
+### Dietary Needs
+
+Ensure all meals comply with dietary constraints.  
+
+For mixed groups → choose venues with diverse menus.  
+
+If compliant venues are scarce → suggest markets or groceries near the evening slot.
+
+### Bookings
+
+If tickets or reservations are typical → add a reminder under *Quick checks*.  
+
+Never simulate bookings.
+
+### Full-Day Activities
+
+If a single activity occupies more than 75% of available hours → prompt packing water/snacks and suggest convenient food stops before departure or along the route.
+
+### Missing or Partial Data
+
+If dates are missing → avoid day-specific closure assumptions; prefer evergreen options and note variability in *Quick checks*.  
+
+If prices, hours, or distances are unknown → assume conservative defaults, keep the activity, and add verification notes.
